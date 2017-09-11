@@ -1,0 +1,1 @@
+function abc(c,n){return console.log("abc"),c+n}

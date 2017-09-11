@@ -44,8 +44,13 @@ module.exports = obj;
 不需要相对路径
 ```js
 var http = require("http");//非相对路径
-
 ```
+
+http模块,主要是用来创建服务器
+```js
+http.createServer(callback)
+```
+
 常用的内置模块
 ```js
 http,fs,os,querystring,url...
@@ -58,3 +63,8 @@ var http = require("../http.js");//非相对路径
 ```
 
 ## 第三方模块
+
+## NPM
+比如gulp
+
+第三方模块就是在[npm包管理中心](https://www.npmjs.com)下载回来的模块
