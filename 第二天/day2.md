@@ -86,3 +86,75 @@ readerStream.pipe(writerStream);
 var zlib = require('zlib');
 readerStream.pipe(zlib.createGzip()).pipe(writerStream);
 ```
+
+# 路由
+
+## GET
+获取url上的id信息
+```
+https://item.taobao.com/item.htm?spm=a1z10.5-c-s.w4002-4609134294.17.41f58d4cGMvdOy&id=551064658726
+```
+后端获取前端GET请求的数据
+
+|php|nodejs|
+|-|-|
+|`$_GET[xxx]`|`var query = url.parse(res.url).query;var data = querystring.parse(query)`|
+```
+http://localhost:12345/?name=laoyao
+```
+
+要获取`name=laoyao`这个键值对
+1. 必须使用引入url的内置模块 ,切割url的有效片段**(indexOf("?")/search -> substr(x) -> split("=") )**
+2. 必须使用引入querystring的内置模块,把url有效片段的字符串数据转为对象
+
+
+## POST
+
+```js
+var http = require("http");
+var querystring = require("querystring");
+//解析url的专用模块
+//request是一个stream流
+http.createServer((request, response) => {
+	var data;
+	request.on('data', function(chunk) {
+		data += chunk;
+	});
+
+	request.on('end', function() {
+		console.log(data);
+		querystring.parse(data)
+		console.log(querystring.parse(data))
+		
+	});
+}).listen(12345)
+```
+
+## JSONP
+
+```js
+var http = require("http");
+//解析url的专用模块
+var url = require("url");
+//
+var querystring = require("querystring");
+
+http.createServer((res, req) => {
+	//url
+	console.log(res.url)
+	//url获取?后面的参数
+	console.log(url.parse(res.url).query)
+	var query = url.parse(res.url).query;
+	//
+	var data = querystring.parse(query);
+	console.log(data.callback)
+	var callback = data.callback;
+	var obj = {
+		name: "laoyao",
+		age: 99,
+		skill: ["ps","js","css"]
+	}
+	
+	req.end(callback+"("+JSON.stringify(obj)+")")
+}).listen(12345)
+```

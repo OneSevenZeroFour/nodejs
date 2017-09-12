@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery.js"></script>
+		<script>
+			$.ajax({
+				type:"GET",
+				dataType:"jsonp",
+				data:{
+					name:"laoyao"
+				},
+				jsonpCallback:"JSONP_CALLBACK",
+				url:"http://localhost:12345/home",
+				success:function(){
+					
+				}
+			})
+		</script>
+	</body>
+</html>

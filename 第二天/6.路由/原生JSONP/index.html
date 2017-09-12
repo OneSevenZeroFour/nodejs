@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<button onclick="getData('http://localhost:12345/?callback=JSONP_CALLBACK')">Ok</button>
+		<script>
+			function JSONP_CALLBACK(data) {
+				console.log(data)
+				//console.log(JSON.parse(data))
+			}
+		</script>
+		<!--<script src="js/jsonp.js">
+		</script>-->
+		<script>
+			function getData(url) {
+				var script = document.createElement("script");
+				script.src = url;
+				document.body.appendChild(script)
+			}
+		</script>
+	</body>
+
+</html>
