@@ -56,3 +56,5 @@ connection.end();
 前端->后端->前端
 
 > index.html--ajax(get)-->server.js--(config,connect,query)-->mysql--callback(results)-->server.js--req.end(results)-->index.html
+
+# nodejs+mysql增删查改

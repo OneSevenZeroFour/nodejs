@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 //执行连接
 connection.connect();
 
-connection.query('SELECT * FROM jobs', function(error, results, fields) {
+connection.query('SELECT * FROM jobs limit 0,5', function(error, results, fields) {
 	if(error) throw error;
 	console.log('The solution is: ', results);
 });

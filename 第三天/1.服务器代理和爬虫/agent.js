@@ -1,6 +1,7 @@
 var http = require("http");
 //console.log(http);
 //http.get(url,callback)
+//mysql cheerio
 http.get("http://www.mmjpg.com/",function(res){
 	var data = "";
 	res.setEncoding('utf8');

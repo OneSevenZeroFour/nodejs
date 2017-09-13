@@ -29,7 +29,7 @@ http.createServer((res, req) => {
 		'Content-Type': 'text/html'
 	});
 	//获取mysql的数据
-	connection.query('SELECT * FROM jobs', function(error, results, fields) {
+	connection.query('SELECT * FROM jobs like 0,10', function(error, results, fields) {
 		if(error) throw error;
 		console.log('The solution is: ', results);
 		var obj = {
