@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery.js"></script>
+		<script>
+			$.ajax({
+				type:"get",
+				url:"http://wthrcdn.etouch.cn/weather_mini?city=%E5%B9%BF%E5%B7%9E",
+				async:true,
+				success:function(data){
+					console.log(data)
+				}
+			});
+		</script>
+	</body>
+</html>
