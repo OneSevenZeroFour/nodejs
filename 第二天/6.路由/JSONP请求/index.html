@@ -11,12 +11,13 @@
 				type:"GET",
 				dataType:"jsonp",
 				data:{
-					name:"laoyao"
+					name:"laoyao",
+					//callback:"JSONP_CALLBACK"
 				},
 				jsonpCallback:"JSONP_CALLBACK",
 				url:"http://localhost:12345/home",
-				success:function(){
-					
+				success:function(data){
+					console.log(data)
 				}
 			})
 		</script>
