@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<ul>
+		</ul>
+		<script src="js/jquery.js"></script>
+		<script>
+			$.ajax({
+				type: "GET",
+				data: {
+					name: "laoyao"
+				},
+				url: "http://localhost:81/1704/nodejs/template.php",
+				success: function(data) {
+					console.log(data)
+				}
+			})
+		</script>
+	</body>
+</html>

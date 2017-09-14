@@ -77,3 +77,32 @@ console.log("开启服务器")
 |GET|POST|JSONP|
 |-|-|-|
 |`req.query`|`req.body`|`req.query`|
+
+# 静态文件
+
+
+[静态文件](http://www.expressjs.com.cn/starter/static-files.html)
+```js
+app.use(express.static('www'));
+app.use(express.static('file'));
+```
+
+# 模板引擎
+
+安装jade模板
+```js
+npm install jade --save
+```
+设置views放模板文件的目录
+```js
+app.set('views', './views')
+```
+设置view engine模板引擎的语言
+```js
+app.set('view engine', 'jade')
+```
+
+# multer
+
+[文件上传](https://github.com/Wscats/node-tutorial/issues/14)
+[npm multer文档](https://www.npmjs.com/package/multer)

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="file" id="file" name="logo" multiple="multiple" />
+		<script>
+			var fileNode = document.getElementById("file");
+			fileNode.onchange = function() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+					if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						console.log(xmlhttp.responseText)
+					}
+				}
+				//创建formdata的信息
+				var data = new FormData(fileNode);
+				//data.append("logo", fileNode.files[0]);
+				console.log(fileNode.files);
+				console.log(data);
+
+				xmlhttp.open("post", "http://localhost:12345/profile", true);
+				xmlhttp.send(data);
+				fileNode.value = null;
+			}
+		</script>
+	</body>
+
+</html>
