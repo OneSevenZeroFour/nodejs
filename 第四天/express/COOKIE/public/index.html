@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="js/jquery.js"></script>
+		<script>
+			document.cookie = "name = laoyao";
+		</script>
+		<script>
+			$.ajax({
+				type:"GET",
+				data:{
+					//name:"laoyao"
+				},
+				url:"http://localhost:12345/cookie",
+				success:function(){
+					
+				}
+			})
+		</script>
+	</body>
+</html>

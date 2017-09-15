@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="rm()">删除</button>
+		<script>
+			//设置值
+			window.localStorage.setItem("language","CN");
+			window.localStorage.setItem("background","red");
+			
+			//获取值
+			console.log(window.localStorage.getItem("language"))
+			
+			//删除
+			function rm(){
+				window.localStorage.removeItem("background")
+			}
+			
+			//清空
+			window.localStorage.clear();
+		</script>
+	</body>
+</html>

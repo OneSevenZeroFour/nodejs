@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({
 
 //获取前端发送的get请求，并响应结果
 app.post("/all", function(req, res) {
+	//用fs读写文件，实现爬虫，实现读写数据库，api接口等
 	//获取post请求的参数 监听req的流
 	console.log(req.body);
 	res.send('post post')

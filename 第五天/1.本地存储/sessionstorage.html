@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="rm()">删除</button>
+		<script>
+			//setCookie getCookie
+			//设置数据 
+			window.sessionStorage.setItem("name","laoyao");
+			window.sessionStorage.setItem("skill",JSON.stringify(["ps","css","js"]));
+			
+			//获取值
+			console.log(JSON.parse(window.sessionStorage.getItem("skill")))
+			
+			//删除
+			function rm(){
+				window.sessionStorage.removeItem("skill")
+			}
+			
+			//清空
+			//window.sessionStorage.clear();
+		</script>
+	</body>
+</html>
