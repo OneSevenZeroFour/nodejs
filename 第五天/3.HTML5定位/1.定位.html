@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dln1cMNEIlU2I4qWHTjRXkd0AcGLaGlr"></script>
+		<script>
+			//BOM
+			//location,history,navigator,document,sessionStorage
+			window.navigator.geolocation.getCurrentPosition(function(data) {
+				//成功的回调
+				console.log(data.coords)
+				console.log("维度：" + data.coords.latitude)
+				console.log("经度：" + data.coords.longitude)
+			}, function(err) {
+				console.log(err)
+				//错误的回调
+				var geolocation = new BMap.Geolocation();
+				geolocation.getCurrentPosition(function(r) {
+					if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+						var mk = new BMap.Marker(r.point);
+						map.addOverlay(mk);
+						map.panTo(r.point);
+						alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+					} else {
+						alert('failed' + this.getStatus());
+					}
+				}, {
+					enableHighAccuracy: true
+				})
+			})
+			//console.log(window.navigator)
+		</script>
+	</body>
+</html>
