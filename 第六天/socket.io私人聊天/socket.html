@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="content" />
+		<!--<input id="userid" />-->
+		<select>
+		</select>
+		<button onclick = "addUser()">添加用户</button>
+		<button onclick = "send()">发送</button>
+		<p></p>
+		<script src="js/socket.js"></script>
+		<script>
+			//$/jQuery
+			//跟后端连接
+			var name = prompt("用户名", "laoxie");
+			console.log(name)
+			var socket = io("http://localhost:3000");
+			function addUser(){
+				socket.emit('adduser', {
+					name,
+				});
+			}
+			function send() {
+				//发送请求
+				socket.emit('chat', {
+					name,
+					message: document.querySelector("#content").value,
+					toId:document.querySelector("select").value
+				});
+			}
+			socket.on("getMessage", function(data) {
+				console.log(data)
+				document.querySelector("p").innerHTML += (data.message + "<br>")
+			})
+			socket.on("showuserlist", function(data) {
+				console.log(data)
+				var html = data.map(function(item){
+					return `
+					<option value="${item.id}">${item.name}</option>
+					`
+				}).join("");
+				document.querySelector("select").innerHTML = html;
+			})
+		</script>
+	</body>
+
+</html>

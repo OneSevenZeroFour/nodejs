@@ -14,10 +14,12 @@ var io = ioFunc(server);
 io.on('connection', function(socket) {
 	socket.on('chat', function(data) {
 		console.log(data);
-		io.emit("getMessage",data)
+		io.emit("getMessage", data)
 	});
 });
 server.listen(12345);
+
+app.use(express.static('uploads'));
 
 var storage = multer.diskStorage({
 	//设置上传后文件路径，uploads文件夹会自动创建。
@@ -38,15 +40,18 @@ var upload = multer({
 
 //单图上传
 app.post('/upload-single', upload.single('logo'), function(req, res, next) {
-	res.append("Access-Control-Allow-Origin","*");
+	res.append("Access-Control-Allow-Origin", "*");
 	console.log(req.file)
 	console.log('文件类型：%s', req.file.mimetype);
 	console.log('原始文件名：%s', req.file.originalname);
 	console.log((req.file.originalname).split("."))
 	console.log('文件大小：%s', req.file.size);
 	console.log('文件保存路径：%s', req.file.path);
+	io.emit("getMessage", {
+		type:"img",
+		filename:req.file.filename
+	})
 	res.send({
 		wscats_code: '0'
 	});
-	io.emit("getMessage",req.file)
 });

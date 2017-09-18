@@ -36,8 +36,13 @@
 			socket.emit('chat', document.querySelector("#content").value);
 		}
 		socket.on("getMessage", function(data) {
-			console.log(data)
-			document.querySelector("#detail").innerHTML += (data + "<br>")
+			if(data.type==="img"){
+				console.log(data.filename)
+				document.querySelector("#detail").innerHTML += (`<img src="http://localhost:3000/${data.filename}" />` + "<br>")
+			}else{
+				document.querySelector("#detail").innerHTML += (data + "<br>")
+			}
+			
 		})
 	</script>
 </html>
