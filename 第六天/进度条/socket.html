@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input />
+		<p></p>
+		<script src="js/socket.js"></script>
+		<script>
+			//$/jQuery
+			//跟后端连接
+			var socket = io("http://localhost:3000");
+			socket.on("getMessage",function(data){
+				console.log(data)
+				//document.querySelector("p").innerHTML+=(data+"<br>")
+			})
+		</script>
+	</body>
+</html>

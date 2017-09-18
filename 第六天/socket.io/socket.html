@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input />
+		<button onclick="send()">发送</button>
+		<p></p>
+		<script src="js/socket.js"></script>
+		<script>
+			//$/jQuery
+			//跟后端连接
+			var socket = io("http://10.3.132.231:3000");
+			function send() {
+				//发送请求
+				socket.emit('chat', document.querySelector("input").value);
+			}
+			socket.on("getMessage",function(data){
+				console.log(data)
+				document.querySelector("p").innerHTML+=(data+"<br>")
+			})
+		</script>
+	</body>
+</html>
