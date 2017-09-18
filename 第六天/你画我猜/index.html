@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		canvas {
+			background-color: red
+		}
+	</style>
+
+	<body>
+		<canvas width="500" height="300"></canvas>
+		<script>
+			var canvas = document.querySelector("canvas");
+			var ctx = canvas.getContext("2d");
+			
+			canvas.onmousedown = function(e){
+				ctx.beginPath();
+				ctx.moveTo(e.clientX, e.clientY);
+				canvas.onmousemove = function(e){
+					ctx.lineTo(e.clientX, e.clientY);
+					ctx.stroke();
+				}
+			}
+			canvas.onmouseup = function(){
+				canvas.onmousemove = null
+			}
+			
+			/*console.log(ctx)
+			ctx.beginPath();
+			ctx.moveTo(0, 0);
+			ctx.lineTo(300, 150);
+			ctx.stroke();*/
+			
+			/*ctx.beginPath();
+			ctx.arc(100,75,50,0*Math.PI,2*Math.PI)
+			ctx.stroke()*/
+		</script>
+	</body>
+
+</html>
