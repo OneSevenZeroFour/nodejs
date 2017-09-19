@@ -17,32 +17,43 @@
 	</style>
 
 	<body>
+		<!--画-->
 		<canvas width="500" height="300"></canvas>
+		<!--猜-->
+		<canvas width="500" height="300"></canvas>
+		<script src="js/socket.js"></script>
 		<script>
-			var canvas = document.querySelector("canvas");
-			var ctx = canvas.getContext("2d");
-			
-			canvas.onmousedown = function(e){
+			var canvas1 = document.querySelectorAll("canvas")[0];
+
+			var socket = io("http://localhost:3000")
+			var ctx = canvas1.getContext("2d");
+
+			canvas1.onmousedown = function(e) {
 				ctx.beginPath();
 				ctx.moveTo(e.clientX, e.clientY);
-				canvas.onmousemove = function(e){
+				canvas1.onmousemove = function(e) {
 					ctx.lineTo(e.clientX, e.clientY);
 					ctx.stroke();
+					socket.emit("draw", {
+						x: e.clientX,
+						y: e.clientY
+					})
 				}
+
 			}
-			canvas.onmouseup = function(){
-				canvas.onmousemove = null
+			canvas1.onmouseup = function() {
+				canvas1.onmousemove = null
 			}
-			
-			/*console.log(ctx)
-			ctx.beginPath();
-			ctx.moveTo(0, 0);
-			ctx.lineTo(300, 150);
-			ctx.stroke();*/
-			
-			/*ctx.beginPath();
-			ctx.arc(100,75,50,0*Math.PI,2*Math.PI)
-			ctx.stroke()*/
+
+			var canvas2 = document.querySelectorAll("canvas")[1];
+			var ctx2 = canvas2.getContext("2d");
+			socket.on("paint",function(data){
+				console.log(data);
+				ctx2.beginPath();
+				ctx2.moveTo(0, 0);
+				ctx2.lineTo(data.x, data.y);
+				ctx2.stroke();
+			})
 		</script>
 	</body>
 
